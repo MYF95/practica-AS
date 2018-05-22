@@ -1,19 +1,25 @@
 package frontController;
 
 
-import data.MedicalRecord;
-import data.myRecordList;
+import Stateful.MedicalRecord;
+import Stateful.myRecordList;
 import java.io.IOException;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 
 public class SearchCommand extends FrontCommand{
+    MedicalRecord record = medicalRecordBean();
+    myRecordList myList = myRecordListBean();
+    
     @Override
     public void process() throws ServletException, IOException {
         HttpSession session = request.getSession();
         String dni = request.getParameter("dni");
-        myRecordList myList = (myRecordList)session.getAttribute("list");
-        MedicalRecord record = myList.hasMedicalRecord(dni);
+        myList = (myRecordList)session.getAttribute("list");
+        record = myList.hasMedicalRecord(dni);
         if(record == null){
             forward("/searchFail.jsp");
         } else if(record.getDni().equals("as")){
@@ -26,4 +32,23 @@ public class SearchCommand extends FrontCommand{
             forward("/search.jsp");
         }
     }
+    
+    private MedicalRecord medicalRecordBean() {
+        try {
+            Context c = new InitialContext();
+            return (MedicalRecord) c.lookup("java:global/HistorialMedico/HistorialMedico-ejb/MedicalRecord!Stateful.MedicalRecord");
+        } catch (NamingException ne) {
+            throw new RuntimeException(ne);
+        }
+    }
+    
+    private myRecordList myRecordListBean() {
+        try {
+            Context c = new InitialContext();
+            return (myRecordList) c.lookup("java:global/HistorialMedico/HistorialMedico-ejb/myRecordList!Stateful.myRecordList");
+        } catch (NamingException ne) {
+            throw new RuntimeException(ne);
+        }
+    }
+    
 }

@@ -1,7 +1,7 @@
-<%@page import="data.myRecordList"%>
+<%@page import="Stateful.MedicalRecord"%>
+<%@page import="Stateful.myRecordList"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="data.MedicalRecord"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,12 +21,6 @@
         </form>
         
         <% 
-            if(session.isNew()){
-                MedicalRecord record = new MedicalRecord();
-                myRecordList myList = new myRecordList();
-                session.setAttribute("list", myList);
-                session.setAttribute("record", record);
-            }
             myRecordList myList = (myRecordList)session.getAttribute("list");
             MedicalRecord record = (MedicalRecord)session.getAttribute("record");
         %>
@@ -34,7 +28,10 @@
             <%= record.getDni() %>     
             <p>Todos los historiales: </p>
             <%= myList.printAll() %>
-        <p><a href="index.html">Volver al inicio</a></p>
-        <p><a href="search.jsp">Buscar una consulta</a></p>
+
+        <p><a href="search.jsp"> Buscar una consulta </a></p>
+        <p><a href="createPatient.jsp"> Crear un paciente </a></p>
+        <p><a href="searchPatient.jsp"> Buscar un paciente </a></p>
+        <p><a href="index.jsp"> Volver al inicio </a></p>
     </body>
 </html>
