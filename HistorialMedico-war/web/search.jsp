@@ -19,7 +19,7 @@
 <%= "<p>Date: " + record.getDate() + "</p>"%>
 <% } session.setAttribute("flag", "false"); %>
 
-<p>Todos los historiales: </p>
+<p>Mis historiales de esta sesión: </p>
 <p> <%= myList.printAll() %> </p>
 
 <%@include file="partials/footer.jsp" %>

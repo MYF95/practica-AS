@@ -5,7 +5,10 @@
  */
 package Stateful;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.LocalBean;
+import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
 /**
@@ -19,6 +22,11 @@ public class MedicalRecord {
     private String info;
     private String date;
 
+    @PostConstruct
+    public void init(){
+        System.out.println("MedicalRecord::init");
+    }
+    
     public MedicalRecord(String dni, String info, String date) {
         this.dni = dni;
         this.info = info;
@@ -53,27 +61,36 @@ public class MedicalRecord {
     }
       
     public String getDni() { 
-        System.out.println("MedicalRecord::getDni()");
         return dni; 
     }
 
     public String getInfo() { 
-        System.out.println("MedicalRecord::getInfo()");
         return info; 
     }
     
     public String getDate() { 
-        System.out.println("MedicalRecord::getInfo()");
         return date; 
     }
 
     public String printAll(){
-        System.out.println("MedicalRecord::printAll()");
         return "Dni: " + dni + " <br> Observaciones: " + info + " <br> Fecha: " + date + " <br> --------------------- <br>";
     }
 
     public boolean getRecord(String dni){
         System.out.println("MedicalRecord::getRecord()::" + dni);
         return this.dni.equals(dni);
+    }
+    
+    @PreDestroy
+    public void preDestroy(){
+        System.out.println("MedicalRecord::preDestroy");
+    }
+    
+    @Remove
+    public void reset(){
+        System.out.println("MedicalRecord::reset");
+        this.dni = null;
+        this.info = null;
+        this.date = null;
     }
 }

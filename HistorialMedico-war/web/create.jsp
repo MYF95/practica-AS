@@ -19,8 +19,9 @@
 %>
 
 <p> La última consulta creada tiene como DNI: </p>
-<p> <%= record.getDni() %> </p>    
-<p> Todos los historiales: </p>
+<p> <%= record.getDni() %> </p>   
+
+<p> Tus historiales de la sesión: </p>
 <p> <%= myList.printAll() %> </p>
 
 <%@include file="partials/footer.jsp" %>
