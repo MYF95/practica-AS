@@ -14,12 +14,12 @@
 </form>
 
 <% 
-    myPatientList patientList = (myPatientList)session.getAttribute("patientList");
+    MyPatientList myPatientList = (MyPatientList)session.getAttribute("myPatientList");
     Patient patient = (Patient)session.getAttribute("patient");
 %>
 <p>El último paciente tiene como DNI: </p>
 <p> <%= patient.getDni() %> </p>
 <p>Todos los historiales: </p>
-<p> <%= patientList.printAll() %> </p>
+<p> <%= myPatientList.printAll() %> </p>
 
 <%@include file="partials/footer.jsp" %>

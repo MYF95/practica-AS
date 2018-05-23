@@ -1,8 +1,8 @@
 <%@include file="partials/header.jsp" %>
 
-<h1>Aquí están las consultas de esta sesión: </h1>
+<h1>Aquí están los pacientes creados en esta sesión: </h1>
 
-<% myRecordList myList = (myRecordList)session.getAttribute("list"); %>
+<% MyPatientList myList = (MyPatientList)session.getAttribute("myPatientList"); %>
 
 <p> <%= myList.printAll() %> </p>
 

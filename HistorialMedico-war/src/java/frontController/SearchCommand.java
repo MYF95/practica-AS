@@ -20,7 +20,6 @@ public class SearchCommand extends FrontCommand{
     public void process() throws ServletException, IOException {
         HttpSession session = request.getSession();
         String dni = request.getParameter("dni");
-        myList = (myRecordList)session.getAttribute("list");
         medicalRecordList = (MedicalRecordList)session.getAttribute("medicalRecordList");
         record = medicalRecordList.hasMedicalRecord(dni);
         if(record == null){

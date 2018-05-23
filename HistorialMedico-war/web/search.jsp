@@ -8,18 +8,12 @@
     <input type="submit">
 </form>
 
-<%  
-    myRecordList myList = (myRecordList)session.getAttribute("list");
-    MedicalRecord record = (MedicalRecord)session.getAttribute("record");  
-%>
-<% if(session.getAttribute("flag") == "true") { %>
+<% MedicalRecord record = (MedicalRecord)session.getAttribute("record");
+   if(session.getAttribute("flag") == "true") { %>
 <%= "<p>Consulta encontrada! Aquí tiene los datos de la consulta:</p>" %>
 <%= "<p>DNI: " + record.getDni() + "</p>"%>
-<%= "<p>Info: " + record.getInfo() + "</p>"%>
+<%= "<p>Observaciones: " + record.getInfo() + "</p>"%>
 <%= "<p>Date: " + record.getDate() + "</p>"%>
 <% } session.setAttribute("flag", "false"); %>
-
-<p>Mis historiales de esta sesión: </p>
-<p> <%= myList.printAll() %> </p>
 
 <%@include file="partials/footer.jsp" %>

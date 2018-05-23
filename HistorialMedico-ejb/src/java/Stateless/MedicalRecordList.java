@@ -9,7 +9,8 @@ import javax.ejb.Remove;
 import javax.ejb.Stateless;
 
 @LocalBean
-@Stateless(mappedName="medicalRecordListBean")
+@Stateless
+
 /*
  Este listado podrá crear, borrar y modificar. Se guarda entre distintos 
  browsers y es de donde cada usuario podrá ver el listado general.

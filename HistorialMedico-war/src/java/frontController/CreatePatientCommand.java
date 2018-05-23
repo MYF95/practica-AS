@@ -2,7 +2,8 @@ package frontController;
 
 
 import Stateful.Patient;
-import Stateful.myPatientList;
+import Stateful.MyPatientList;
+import Stateless.PatientList;
 import java.io.IOException;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -12,7 +13,8 @@ import javax.servlet.http.HttpSession;
 
 public class CreatePatientCommand extends FrontCommand{
     Patient patient = patientBean();
-    myPatientList patientList = myPatientListBean();
+    MyPatientList myPatientList = myPatientListBean();
+    PatientList patientList = patientListBean();
     
     @Override
     public void process() throws ServletException, IOException {
@@ -21,13 +23,16 @@ public class CreatePatientCommand extends FrontCommand{
         patient.setNombre(request.getParameter("patientName"));
         patient.setDni(request.getParameter("patientDni"));
         patient.setEdad(Integer.parseInt(request.getParameter("patientAge")));
-        patientList = (myPatientList)session.getAttribute("patientList");
+        myPatientList = (MyPatientList)session.getAttribute("myPatientList");
         if(patient.getDni().equals("")){
             forward("/createFail.jsp");
         } else {
             patientList.add(patient);
-            session.setAttribute("patient", patient);
             session.setAttribute("patientList", patientList);
+            
+            myPatientList.add(patient);
+            session.setAttribute("patient", patient);
+            session.setAttribute("myPatientList", myPatientList);
             forward("/createPatient.jsp");
         }
     }
@@ -41,10 +46,19 @@ public class CreatePatientCommand extends FrontCommand{
         }
     }
     
-    private myPatientList myPatientListBean() {
+    private MyPatientList myPatientListBean() {
         try {
             Context c = new InitialContext();
-            return (myPatientList) c.lookup("java:global/HistorialMedico/HistorialMedico-ejb/myPatientList!Stateful.myPatientList");
+            return (MyPatientList) c.lookup("java:global/HistorialMedico/HistorialMedico-ejb/MyPatientList!Stateful.MyPatientList");
+        } catch (NamingException ne) {
+            throw new RuntimeException(ne);
+        }
+    }
+    
+    private PatientList patientListBean() {
+        try {
+            Context c = new InitialContext();
+            return (PatientList) c.lookup("java:global/HistorialMedico/HistorialMedico-ejb/PatientList!Stateless.PatientList");
         } catch (NamingException ne) {
             throw new RuntimeException(ne);
         }

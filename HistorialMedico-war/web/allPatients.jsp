@@ -1,9 +1,9 @@
 <%@include file="partials/header.jsp" %>
 
-<h1>Aquí están todas las consultas del servidor: </h1>
+<h1>Aquí están todas los pacientes del servidor: </h1>
 
-<% MedicalRecordList medicalRecordList = (MedicalRecordList)session.getAttribute("medicalRecordList"); %>
+<% PatientList patientList = (PatientList)session.getAttribute("patientList"); %>
 
-<p> <%= medicalRecordList.printAll() %> </p>
+<p> <%= patientList.printAll() %> </p>
 
 <%@include file="partials/footer.jsp" %>

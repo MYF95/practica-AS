@@ -4,8 +4,9 @@
     Author     : myf19
 --%>
 
+<%@page import="Stateless.PatientList"%>
 <%@page import="Stateless.MedicalRecordList"%>
-<%@page import="Stateful.myPatientList"%>
+<%@page import="Stateful.MyPatientList"%>
 <%@page import="Stateful.Patient"%>
 <%@page import="Stateful.myRecordList"%>
 <%@page import="Stateful.MedicalRecord"%>
@@ -36,8 +37,8 @@
                     <div class="dropdown-content">
                         <a href="createPatient.jsp">Crear paciente</a>
                         <a href="searchPatient.jsp">Buscar paciente</a>
-                        <a href="#">Mi lista de pacientes</a>
-                        <a href="#">Todos los pacientes</a>
+                        <a href="currentPatients.jsp">Mi lista de pacientes</a>
+                        <a href="allPatients.jsp">Todos los pacientes</a>
                     </div>
                 </li>
             </ul>            
@@ -48,12 +49,14 @@
                 MedicalRecord record = new MedicalRecord();
                 myRecordList myList = new myRecordList();
                 Patient patient = new Patient();
-                myPatientList patientList = new myPatientList();
+                MyPatientList myPatientList = new MyPatientList();
                 MedicalRecordList medicalRecordList = new MedicalRecordList();
+                PatientList patientList = new PatientList();
                 session.setAttribute("list", myList);
                 session.setAttribute("record", record);
                 session.setAttribute("patient", patient);
-                session.setAttribute("patientList", patientList);
+                session.setAttribute("myPatientList", myPatientList);
                 session.setAttribute("medicalRecordList", medicalRecordList);
+                session.setAttribute("patientList", patientList);
             }
         %>

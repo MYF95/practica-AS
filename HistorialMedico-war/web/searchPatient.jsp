@@ -9,9 +9,8 @@
 </form>
 
 <%  
-    myPatientList patientList = (myPatientList)session.getAttribute("patientList");
+    MyPatientList myPatientList = (MyPatientList)session.getAttribute("myPatientList");
     Patient patient = (Patient)session.getAttribute("patient");
-
 %>
 <% if(session.getAttribute("flag") == "true") { %>
 <%= "<p>Paciente encontrado! Aquí tiene los datos del paciente:</p>" %>
@@ -20,7 +19,7 @@
 <%= "<p>Edad: " + patient.getEdad() + "</p>"%>
 <% } session.setAttribute("flag", "false"); %>
 
-<p>Todos los historiales: </p>
-<p> <%= patientList.printAll() %> </p>
+<p>Todos los pacientes de la sesión: </p>
+<p> <%= myPatientList.printAll() %> </p>
 
-<%@include file="partials/header.jsp" %>
+<%@include file="partials/footer.jsp" %>

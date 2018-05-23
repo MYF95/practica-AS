@@ -5,7 +5,10 @@
  */
 package Stateful;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.LocalBean;
+import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
 /**
@@ -18,6 +21,11 @@ public class Patient {
     private String nombre;
     private String dni;
     private int edad;
+    
+    @PostConstruct
+    public void init(){
+        System.out.println("Patient::init");
+    }
 
     public Patient(String nombre, String dni, int edad) {
         this.nombre = nombre;
@@ -38,7 +46,6 @@ public class Patient {
     }
     
     public String getNombre() {
-        System.out.println("Patient::getNombre()");
         return nombre;
     }
 
@@ -48,7 +55,6 @@ public class Patient {
     }
 
     public String getDni() {
-        System.out.println("Patient::getDni()");
         return dni;
     }
 
@@ -58,7 +64,6 @@ public class Patient {
     }
 
     public int getEdad() {
-        System.out.println("Patient::getEdad()");
         return edad;
     }
 
@@ -68,13 +73,25 @@ public class Patient {
     }
     
     public String printAll(){
-        System.out.println("Patient::printAll()");
         return "Nombre: " + nombre + " <br> DNI: " + dni + " <br> Edad: " + edad + " <br> --------------------- <br>";
     }
 
     public boolean getPatient(String dni){
         System.out.println("Patient::getPatient()::" + dni);
         return this.dni.equals(dni);
+    }
+    
+    @PreDestroy
+    public void preDestroy(){
+        System.out.println("Patient::preDestroy");
+    }
+    
+    @Remove
+    public void reset(){
+        System.out.println("Patient::remove");
+        this.nombre = null;
+        this.dni = null;
+        this.edad = 0;
     }
     
 }

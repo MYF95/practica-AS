@@ -13,15 +13,9 @@
     <input type="submit">
 </form>
 
-<% 
-    myRecordList myList = (myRecordList)session.getAttribute("list");
-    MedicalRecord record = (MedicalRecord)session.getAttribute("record");
-%>
+<% MedicalRecord record = (MedicalRecord)session.getAttribute("record"); %>
 
 <p> La última consulta creada tiene como DNI: </p>
 <p> <%= record.getDni() %> </p>   
-
-<p> Tus historiales de la sesión: </p>
-<p> <%= myList.printAll() %> </p>
 
 <%@include file="partials/footer.jsp" %>
