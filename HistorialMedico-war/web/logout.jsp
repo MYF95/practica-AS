@@ -1,6 +1,6 @@
 <%@include file="partials/header.jsp" %>
 
-<h1>Rellene el formulario para crear la nueva consulta</h1>
+<h1>Logout</h1>
 
 <form action="FrontServlet">
     ¿Quieres cerrar sesión?

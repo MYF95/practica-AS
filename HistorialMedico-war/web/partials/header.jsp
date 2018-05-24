@@ -8,7 +8,7 @@
 <%@page import="Stateful.User"%>
 <%@page import="Stateless.PatientList"%>
 <%@page import="Stateless.MedicalRecordList"%>
-<%@page import="Stateful.MyPatientList"%>
+<%@page import="Stateful.myPatientList"%>
 <%@page import="Stateful.Patient"%>
 <%@page import="Stateful.myRecordList"%>
 <%@page import="Stateful.MedicalRecord"%>
@@ -30,19 +30,19 @@
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">Consultas médicas</a>
                     <div class="dropdown-content">
-                        <a href="${pageContext.request.contextPath}/records/create.jsp">Crear consulta médica</a>
-                        <a href="${pageContext.request.contextPath}/records/search.jsp">Buscar consulta médica</a>
-                        <a href="${pageContext.request.contextPath}/records/currentRecords.jsp">Mi lista de consultas</a>
-                        <a href="${pageContext.request.contextPath}/records/allRecords.jsp">Todas las consultas médicas</a>
+                        <a href="${pageContext.request.contextPath}/create.jsp">Crear consulta médica</a>
+                        <a href="${pageContext.request.contextPath}/search.jsp">Buscar consulta médica</a>
+                        <a href="${pageContext.request.contextPath}/currentRecords.jsp">Mi lista de consultas</a>
+                        <a href="${pageContext.request.contextPath}/allRecords.jsp">Todas las consultas médicas</a>
                     </div>
                 </li>
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">Pacientes</a>
                     <div class="dropdown-content">
-                        <a href="${pageContext.request.contextPath}/patients/createPatient.jsp">Crear paciente</a>
-                        <a href="${pageContext.request.contextPath}/patients/searchPatient.jsp">Buscar paciente</a>
-                        <a href="${pageContext.request.contextPath}/patients/currentPatients.jsp">Mi lista de pacientes</a>
-                        <a href="${pageContext.request.contextPath}/patients/allPatients.jsp">Todos los pacientes</a>
+                        <a href="${pageContext.request.contextPath}/createPatient.jsp">Crear paciente</a>
+                        <a href="${pageContext.request.contextPath}/searchPatient.jsp">Buscar paciente</a>
+                        <a href="${pageContext.request.contextPath}/currentPatients.jsp">Mi lista de pacientes</a>
+                        <a href="${pageContext.request.contextPath}/allPatients.jsp">Todos los pacientes</a>
                     </div>
                 </li>
                 <% if(session.getAttribute("logged") == "true"){ %>
@@ -62,7 +62,7 @@
                 MedicalRecord record = new MedicalRecord();
                 myRecordList myList = new myRecordList();
                 Patient patient = new Patient();
-                MyPatientList myPatientList = new MyPatientList();
+                myPatientList myPatientList = new myPatientList();
                 MedicalRecordList medicalRecordList = new MedicalRecordList();
                 PatientList patientList = new PatientList();
                 User user = new User();

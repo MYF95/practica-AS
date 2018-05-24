@@ -1,8 +1,11 @@
 <%@include file="partials/header.jsp" %>
 
+
+<h1>Login</h1>
 <% if(session.getAttribute("logged") == "true"){ %>
 <h1>Ya estás logueado!</h1>
 <% } else { %>
+
 <form action="FrontServlet">
     DNI de la sesión: <br>
     <input type="text" name="dni"> <br>

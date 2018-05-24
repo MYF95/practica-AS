@@ -1,4 +1,4 @@
-<%@include file="../partials/header.jsp" %>
+<%@include file="partials/header.jsp" %>
 
 <h1>Busque un paciente por DNI</h1>
 <form action="FrontServlet">
@@ -9,7 +9,7 @@
 </form>
 
 <%  
-    MyPatientList myPatientList = (MyPatientList)session.getAttribute("myPatientList");
+    myPatientList myPatientList = (myPatientList)session.getAttribute("myPatientList");
     Patient patient = (Patient)session.getAttribute("patient");
 %>
 <% if(session.getAttribute("flag") == "true") { %>
@@ -22,4 +22,4 @@
 <p>Todos los pacientes de la sesión: </p>
 <p> <%= myPatientList.printAll() %> </p>
 
-<%@include file="../partials/footer.jsp" %>
+<%@include file="partials/footer.jsp" %>

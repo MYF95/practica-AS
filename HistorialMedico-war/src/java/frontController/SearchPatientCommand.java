@@ -2,7 +2,7 @@ package frontController;
 
 
 import Stateful.Patient;
-import Stateful.MyPatientList;
+import Stateful.myPatientList;
 import Stateless.PatientList;
 import java.io.IOException;
 import javax.naming.Context;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 public class SearchPatientCommand extends FrontCommand{
     Patient patient = patientBean();
-    MyPatientList myPatientList = myPatientListBean();
+    myPatientList myPatientList = myPatientListBean();
     PatientList patientList = patientListBean();
     
     @Override
@@ -27,7 +27,7 @@ public class SearchPatientCommand extends FrontCommand{
         } else{
             session.setAttribute("flag", "true");
             session.setAttribute("patient", patient);
-            forward("/patients/searchPatient.jsp");
+            forward("/searchPatient.jsp");
         }
     }
     
@@ -40,10 +40,10 @@ public class SearchPatientCommand extends FrontCommand{
         }
     }
     
-    private MyPatientList myPatientListBean() {
+    private myPatientList myPatientListBean() {
         try {
             Context c = new InitialContext();
-            return (MyPatientList) c.lookup("java:global/HistorialMedico/HistorialMedico-ejb/MyPatientList!Stateful.MyPatientList");
+            return (myPatientList) c.lookup("java:global/HistorialMedico/HistorialMedico-ejb/myPatientList!Stateful.myPatientList");
         } catch (NamingException ne) {
             throw new RuntimeException(ne);
         }

@@ -35,7 +35,7 @@ public class CreateCommand extends FrontCommand{
             session.setAttribute("medicalRecordList", medicalRecordList);
             
             session.setAttribute("record", record);
-            forward("/records/create.jsp");
+            forward("/create.jsp");
         } else {
             //Se añade a la lista global
             medicalRecordList.add(record);
@@ -44,7 +44,7 @@ public class CreateCommand extends FrontCommand{
             myList.add(record);
             session.setAttribute("record", record);
             session.setAttribute("list", myList);
-            forward("/records/create.jsp");
+            forward("/create.jsp");
         }
     }
     

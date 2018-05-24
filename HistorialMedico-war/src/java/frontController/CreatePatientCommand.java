@@ -2,7 +2,7 @@ package frontController;
 
 
 import Stateful.Patient;
-import Stateful.MyPatientList;
+import Stateful.myPatientList;
 import Stateless.PatientList;
 import java.io.IOException;
 import javax.naming.Context;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 public class CreatePatientCommand extends FrontCommand{
     Patient patient = patientBean();
-    MyPatientList myPatientList = myPatientListBean();
+    myPatientList myPatientList = myPatientListBean();
     PatientList patientList = patientListBean();
     
     @Override
@@ -23,7 +23,7 @@ public class CreatePatientCommand extends FrontCommand{
         patient.setNombre(request.getParameter("patientName"));
         patient.setDni(request.getParameter("patientDni"));
         patient.setEdad(Integer.parseInt(request.getParameter("patientAge")));
-        myPatientList = (MyPatientList)session.getAttribute("myPatientList");
+        myPatientList = (myPatientList)session.getAttribute("myPatientList");
         if(patient.getDni().equals("")){
             forward("/createFail.jsp");
         } else {
@@ -33,7 +33,7 @@ public class CreatePatientCommand extends FrontCommand{
             myPatientList.add(patient);
             session.setAttribute("patient", patient);
             session.setAttribute("myPatientList", myPatientList);
-            forward("/patients/createPatient.jsp");
+            forward("/createPatient.jsp");
         }
     }
     
@@ -46,10 +46,10 @@ public class CreatePatientCommand extends FrontCommand{
         }
     }
     
-    private MyPatientList myPatientListBean() {
+    private myPatientList myPatientListBean() {
         try {
             Context c = new InitialContext();
-            return (MyPatientList) c.lookup("java:global/HistorialMedico/HistorialMedico-ejb/MyPatientList!Stateful.MyPatientList");
+            return (myPatientList) c.lookup("java:global/HistorialMedico/HistorialMedico-ejb/myPatientList!Stateful.myPatientList");
         } catch (NamingException ne) {
             throw new RuntimeException(ne);
         }
