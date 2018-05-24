@@ -45,15 +45,18 @@
                         <a href="${pageContext.request.contextPath}/allPatients.jsp">Todos los pacientes</a>
                     </div>
                 </li>
-                <% if(session.getAttribute("logged") == "true"){ %>
-                    <li class="dropbtn">
-                        <a href="${pageContext.request.contextPath}/logout.jsp">Logout</a> 
-                    </li>           
-                <% } else { %>
-                    <li class="dropbtn">
-                        <a href="${pageContext.request.contextPath}/login.jsp">Login</a> 
-                    </li>
-                <% } %>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Opciones</a>
+                    <div class="dropdown-content">
+                        <a href="${pageContext.request.contextPath}/allUsers.jsp">Ver usuarios</a>
+                        <% if(session.getAttribute("logged") == "true"){ %>
+                            <a href="${pageContext.request.contextPath}/logout.jsp">Logout</a>         
+                        <% } else { %>
+                            <a href="${pageContext.request.contextPath}/login.jsp">Login</a> 
+                        <% } %>
+                    </div>
+                </li>
+
             </ul>            
         </nav>
         
