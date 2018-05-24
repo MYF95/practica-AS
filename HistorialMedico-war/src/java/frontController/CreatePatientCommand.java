@@ -33,7 +33,7 @@ public class CreatePatientCommand extends FrontCommand{
             myPatientList.add(patient);
             session.setAttribute("patient", patient);
             session.setAttribute("myPatientList", myPatientList);
-            forward("/createPatient.jsp");
+            forward("/patients/createPatient.jsp");
         }
     }
     

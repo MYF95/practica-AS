@@ -1,4 +1,4 @@
-<%@include file="partials/header.jsp" %>
+<%@include file="../partials/header.jsp" %>
 
 <h1>Rellene el formulario para crear la nueva consulta</h1>
 
@@ -18,4 +18,4 @@
 <p> La última consulta creada tiene como DNI: </p>
 <p> <%= record.getDni() %> </p>   
 
-<%@include file="partials/footer.jsp" %>
+<%@include file="../partials/footer.jsp" %>

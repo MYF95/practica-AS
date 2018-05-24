@@ -27,7 +27,7 @@ public class SearchPatientCommand extends FrontCommand{
         } else{
             session.setAttribute("flag", "true");
             session.setAttribute("patient", patient);
-            forward("/searchPatient.jsp");
+            forward("/patients/searchPatient.jsp");
         }
     }
     
