@@ -31,7 +31,7 @@ public class SearchCommand extends FrontCommand{
         } else{
             session.setAttribute("flag", "true");
             session.setAttribute("record", record);
-            forward("/search.jsp");
+            forward("/records/search.jsp");
         }
     }
     

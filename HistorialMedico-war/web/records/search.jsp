@@ -1,4 +1,4 @@
-<%@include file="partials/header.jsp" %>
+<%@include file="../partials/header.jsp" %>
 
 <h1>Busque una consulta por DNI</h1>
 <form action="FrontServlet">
@@ -16,4 +16,4 @@
 <%= "<p>Date: " + record.getDate() + "</p>"%>
 <% } session.setAttribute("flag", "false"); %>
 
-<%@include file="partials/footer.jsp" %>
+<%@include file="../partials/footer.jsp" %>

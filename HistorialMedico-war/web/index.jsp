@@ -11,8 +11,14 @@ and open the template in the editor.
 -->
 <%@include file="partials/header.jsp" %>
 
-        <h1>Consulta médica</h1>
-        <p>Esta es la página principal de las consultas médicas, decida a donde 
-            quiere ir elija desde el navegador a donde quiere ir</p>
+<% User user = (User)session.getAttribute("user"); %>
+
+<% if(session.getAttribute("logged") == "true"){%>
+<h1>Bievenido a la página usuario <%= user.getName() %></h1>
+<% } %>
+
+<h1>Consulta médica</h1>
+<p>Esta es la página principal de las consultas médicas, decida a donde 
+    quiere ir elija desde el navegador a donde quiere ir</p>
         
 <%@include file="partials/footer.jsp" %>
