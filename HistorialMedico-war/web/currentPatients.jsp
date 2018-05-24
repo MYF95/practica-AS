@@ -1,4 +1,4 @@
-<%@include file="../partials/header.jsp" %>
+<%@include file="partials/header.jsp" %>
 
 <h1>Aquí están los pacientes creados en esta sesión: </h1>
 
@@ -6,4 +6,4 @@
 
 <p> <%= myList.printAll() %> </p>
 
-<%@include file="../partials/footer.jsp" %>
+<%@include file="partials/footer.jsp" %>

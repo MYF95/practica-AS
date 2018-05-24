@@ -1,4 +1,4 @@
-<%@include file="../partials/header.jsp" %>
+<%@include file="partials/header.jsp" %>
 
 <h1>Rellene el formulario para crear el nuevo usuario</h1>
 
@@ -22,4 +22,4 @@
 <p>Todos los historiales: </p>
 <p> <%= myPatientList.printAll() %> </p>
 
-<%@include file="../partials/footer.jsp" %>
+<%@include file="partials/footer.jsp" %>
