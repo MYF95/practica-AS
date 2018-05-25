@@ -4,6 +4,7 @@
     Author     : myf19
 --%>
 
+<%@page import="Singleton.Log"%>
 <%@page import="Stateless.UserList"%>
 <%@page import="Stateful.User"%>
 <%@page import="Stateless.PatientList"%>
@@ -49,6 +50,7 @@
                     <a href="javascript:void(0)" class="dropbtn">Opciones</a>
                     <div class="dropdown-content">
                         <a href="${pageContext.request.contextPath}/allUsers.jsp">Ver usuarios</a>
+                        <a href="${pageContext.request.contextPath}/logs.jsp">Ver logs</a>
                         <% if(session.getAttribute("logged") == "true"){ %>
                             <a href="${pageContext.request.contextPath}/logout.jsp">Logout</a>         
                         <% } else { %>
@@ -80,4 +82,5 @@
                 session.setAttribute("userList", userList);
                 session.setAttribute("logged", "false");
             }
+            Log.logJsp(request.getRequestURI());
         %>

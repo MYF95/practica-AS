@@ -6,18 +6,18 @@ package frontController;
  * and open the template in the editor.
  */
 
+import Singleton.Log;
 import java.io.IOException;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-/**
- *
- * @author myf19
- */
+
 @WebServlet(name = "FrontServlet", urlPatterns = {"/FrontServlet"})
 public class FrontServlet extends HttpServlet {
+    
     @Override
     
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -45,6 +45,7 @@ public class FrontServlet extends HttpServlet {
         catch(ClassNotFoundException e) {
             result = UnknownCommand.class;
         }
+        Log.logCommand(command);
         return result;
     }
     

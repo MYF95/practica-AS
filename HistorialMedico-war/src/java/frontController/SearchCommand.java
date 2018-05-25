@@ -1,10 +1,13 @@
 package frontController;
 
 
+import Singleton.Log;
 import Stateful.MedicalRecord;
 import Stateful.myRecordList;
 import Stateless.MedicalRecordList;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -15,6 +18,7 @@ public class SearchCommand extends FrontCommand{
     MedicalRecord record = medicalRecordBean();
     myRecordList myList = myRecordListBean();
     MedicalRecordList medicalRecordList = medicalRecordListBean();
+    Log log = logBean();
     
     @Override
     public void process() throws ServletException, IOException {
@@ -40,6 +44,7 @@ public class SearchCommand extends FrontCommand{
             Context c = new InitialContext();
             return (MedicalRecord) c.lookup("java:global/HistorialMedico/HistorialMedico-ejb/MedicalRecord!Stateful.MedicalRecord");
         } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
     }
@@ -49,6 +54,7 @@ public class SearchCommand extends FrontCommand{
             Context c = new InitialContext();
             return (myRecordList) c.lookup("java:global/HistorialMedico/HistorialMedico-ejb/myRecordList!Stateful.myRecordList");
         } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
     }
@@ -58,6 +64,17 @@ public class SearchCommand extends FrontCommand{
             Context c = new InitialContext();
             return medicalRecordList = (MedicalRecordList) c.lookup("java:global/HistorialMedico/HistorialMedico-ejb/MedicalRecordList!Stateless.MedicalRecordList");
         } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+    
+    private Log logBean() {
+        try {
+            Context c = new InitialContext();
+            return (Log) c.lookup("java:global/HistorialMedico/HistorialMedico-ejb/Log!Singleton.Log");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);
         }
     }
