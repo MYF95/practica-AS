@@ -40,14 +40,14 @@ public class UserList {
         }
     }
     
-    public boolean isLogged(String dni){
+    public User isLogged(String dni){
         System.out.println("UserList::isLogged::" + dni);
         for(int i = 0; i<myList.size(); i++){
             if(myList.get(i).getDni().equals(dni)){
-                return true; 
+                return myList.get(i); 
             }
         }
-        return false;
+        return null;
     }
     
     @PreDestroy

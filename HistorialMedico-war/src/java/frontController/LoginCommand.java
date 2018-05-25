@@ -17,15 +17,16 @@ public class LoginCommand extends FrontCommand{
     @Override
     public void process() throws ServletException, IOException {
         HttpSession session = request.getSession();
-        userList = (UserList)session.getAttribute("userList");
         if(session.getAttribute("logged").equals("true")){ //Si el usuario está logueado aprovechamos la operación
+            session.setAttribute("user", userBean());
             session.setAttribute("logged", "false");
+            user.reset();
             forward("/index.jsp");
         } else {
             user.setDni(request.getParameter("dni"));
             user.setName(request.getParameter("nombre"));
-            if(userList.isLogged(user.getDni())){
-                session.setAttribute("user", user);
+            if(userList.isLogged(user.getDni()) != null){
+                session.setAttribute("user", userList.isLogged(user.getDni()));
                 session.setAttribute("logged", "true");
                 forward("/index.jsp");
             } else {
