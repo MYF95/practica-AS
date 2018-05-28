@@ -1,4 +1,3 @@
-<%@page import="Singleton.Log"%>
 <%@include file="partials/header.jsp" %>
 
 <h1>Logs del sistema</h1>

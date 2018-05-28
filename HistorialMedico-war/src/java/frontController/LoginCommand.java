@@ -1,6 +1,7 @@
 package frontController;
 
 import Singleton.Log;
+import Singleton.Stats;
 import Stateful.User;
 import Stateless.UserList;
 import java.io.IOException;
@@ -17,6 +18,7 @@ public class LoginCommand extends FrontCommand{
     User user = userBean();
     UserList userList = userListBean();
     Log log = logBean();
+    Stats stats = statsBean();
     
     @Override
     public void process() throws ServletException, IOException {
@@ -32,12 +34,14 @@ public class LoginCommand extends FrontCommand{
             if(userList.isLogged(user.getDni()) != null){
                 session.setAttribute("user", userList.isLogged(user.getDni()));
                 session.setAttribute("logged", "true");
+                stats.addLoggedUser();
                 forward("/index.jsp");
             } else {
                 session.setAttribute("user", user);
                 session.setAttribute("logged", "true");
                 userList.add(user);
                 session.setAttribute("userList", userList);
+                stats.addLoggedUser();
                 forward("/index.jsp");
             }            
         }
@@ -67,6 +71,16 @@ public class LoginCommand extends FrontCommand{
         try {
             Context c = new InitialContext();
             return (Log) c.lookup("java:global/HistorialMedico/HistorialMedico-ejb/Log!Singleton.Log");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+    
+    private Stats statsBean() {
+        try {
+            Context c = new InitialContext();
+            return (Stats) c.lookup("java:global/HistorialMedico/HistorialMedico-ejb/Stats!Singleton.Stats");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

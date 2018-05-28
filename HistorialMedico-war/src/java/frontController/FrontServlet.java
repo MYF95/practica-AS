@@ -7,8 +7,8 @@ package frontController;
  */
 
 import Singleton.Log;
+import Singleton.Stats;
 import java.io.IOException;
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,6 +46,7 @@ public class FrontServlet extends HttpServlet {
             result = UnknownCommand.class;
         }
         Log.logCommand(command);
+        Stats.addCommandUsage(command);
         return result;
     }
     

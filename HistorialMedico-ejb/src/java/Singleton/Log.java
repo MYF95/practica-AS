@@ -5,10 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.FileHandler;
-import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.LocalBean;
 import javax.ejb.Lock;
 import javax.ejb.LockType;
@@ -31,7 +31,7 @@ public class Log {
         try {
             files = new FileHandler(path);
             log.addHandler(files);
-            log.info("Starting Log...");
+            log.info("Starting Log Bean...");
         } catch (IOException ex) {
             Logger.getLogger(Log.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SecurityException ex) {
@@ -98,5 +98,9 @@ public class Log {
         return result;
     }
 
+    @PreDestroy
+    public void preDestroy(){
+        System.out.println("Log bean destroyed");
+    }
 }
 

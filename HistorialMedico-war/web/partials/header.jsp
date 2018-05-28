@@ -5,6 +5,7 @@
 --%>
 
 <%@page import="Singleton.Log"%>
+<%@page import="Singleton.Stats"%>
 <%@page import="Stateless.UserList"%>
 <%@page import="Stateful.User"%>
 <%@page import="Stateless.PatientList"%>
@@ -13,6 +14,7 @@
 <%@page import="Stateful.Patient"%>
 <%@page import="Stateful.myRecordList"%>
 <%@page import="Stateful.MedicalRecord"%>
+<%@page import="java.util.Map"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -51,6 +53,7 @@
                     <div class="dropdown-content">
                         <a href="${pageContext.request.contextPath}/allUsers.jsp">Ver usuarios</a>
                         <a href="${pageContext.request.contextPath}/logs.jsp">Ver logs</a>
+                        <a href="${pageContext.request.contextPath}/stats.jsp">Ver estadísticas</a>
                         <% if(session.getAttribute("logged") == "true"){ %>
                             <a href="${pageContext.request.contextPath}/logout.jsp">Logout</a>         
                         <% } else { %>
@@ -82,5 +85,7 @@
                 session.setAttribute("userList", userList);
                 session.setAttribute("logged", "false");
             }
-            Log.logJsp(request.getRequestURI());
+            String requestURL = request.getRequestURI();
+            Log.logJsp(requestURL);
+            Stats.addPageVisit(requestURL);
         %>
