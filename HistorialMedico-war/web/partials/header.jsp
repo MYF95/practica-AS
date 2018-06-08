@@ -4,6 +4,7 @@
     Author     : myf19
 --%>
 
+<%@page import="Entities.Patients"%>
 <%@page import="Singleton.Log"%>
 <%@page import="Singleton.Stats"%>
 <%@page import="Stateless.UserList"%>
@@ -15,6 +16,8 @@
 <%@page import="Stateful.myRecordList"%>
 <%@page import="Stateful.MedicalRecord"%>
 <%@page import="java.util.Map"%>
+<%@page import="javax.naming.InitialContext"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -61,12 +64,22 @@
                         <% } %>
                     </div>
                 </li>
-
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Base de datos</a>
+                    <div class="dropdown-content">
+                        <a href="${pageContext.request.contextPath}/dbPatients.jsp">Ver usuarios</a>
+                        <% if(session.getAttribute("logged") == "true"){ %>
+                            <a href="${pageContext.request.contextPath}/logout.jsp">Logout</a>         
+                        <% } else { %>
+                            <a href="${pageContext.request.contextPath}/login.jsp">Login</a> 
+                        <% } %>
+                    </div>
+                </li>
             </ul>            
         </nav>
         
         <% 
-            if(session.isNew()){ //Inicialización de los beans
+            if(session.isNew()){ //Inicialización de los beans                
                 MedicalRecord record = new MedicalRecord();
                 myRecordList myList = new myRecordList();
                 Patient patient = new Patient();
@@ -75,6 +88,10 @@
                 PatientList patientList = new PatientList();
                 User user = new User();
                 UserList userList = new UserList();
+                
+                //DB
+                Patients dbPatient = new Patients();
+                
                 session.setAttribute("list", myList);
                 session.setAttribute("record", record);
                 session.setAttribute("patient", patient);
@@ -85,7 +102,6 @@
                 session.setAttribute("userList", userList);
                 session.setAttribute("logged", "false");
             }
-            String requestURL = request.getRequestURI();
-            Log.logJsp(requestURL);
-            Stats.addPageVisit(requestURL);
+            Log.logJsp(request.getRequestURI());
+            Stats.addPageVisit(request.getRequestURI());
         %>
