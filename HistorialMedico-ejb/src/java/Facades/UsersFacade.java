@@ -40,8 +40,13 @@ public class UsersFacade extends AbstractFacade<Users> {
         return em.createQuery(query).getResultList();
     }
     
-    public List<Users> findRecordbyDni(String dni){
+    public List<Users> findUserbyDni(String dni){
         String query= "SELECT u FROM Users u WHERE u.dni = :dni";
         return em.createQuery(query).setParameter("dni", dni).getResultList();
+    }
+    
+    public List<Users> findUserbyId(int id){
+        String query= "SELECT u FROM Users u WHERE u.id = :id";
+        return em.createQuery(query).setParameter("id", id).getResultList();
     }
 }

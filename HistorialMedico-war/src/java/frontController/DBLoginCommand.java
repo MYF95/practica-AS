@@ -30,9 +30,10 @@ public class DBLoginCommand extends FrontCommand{
             session.setAttribute("logged", "false");
             forward("/index.jsp");
         } else {            
-            List <Users> user = uf.findRecordbyDni(request.getParameter("dni")); 
+            List <Users> user = uf.findUserbyDni(request.getParameter("dni")); 
             if(user != null && user.isEmpty() != true){
                 session.setAttribute("user", user.get(0).getName());
+                session.setAttribute("userId", user.get(0).getId());
                 session.setAttribute("logged", "true");
                 stats.addLoggedUser();
                 forward("/index.jsp");

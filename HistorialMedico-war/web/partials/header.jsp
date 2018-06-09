@@ -59,6 +59,9 @@
                         <a href="${pageContext.request.contextPath}/dbRecords.jsp">Ver consultas</a>
                         <a href="${pageContext.request.contextPath}/dbUsers.jsp">Ver usuarios</a>
                         <a href="${pageContext.request.contextPath}/dbPatientRecords.jsp">Ver consultas relacionadas</a>
+                        <% if(session.getAttribute("logged") == "true"){ %>
+                            <a href="${pageContext.request.contextPath}/dbPatientList.jsp">Mis pacientes</a>         
+                        <% } %>                      
                     </div>
                 </li>                
                 <li class="dropdown">
