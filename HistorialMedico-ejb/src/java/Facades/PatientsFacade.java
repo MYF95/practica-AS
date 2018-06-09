@@ -61,5 +61,9 @@ public class PatientsFacade extends AbstractFacade<Patients> {
         return em.createQuery(query).getResultList();
     }
     
-   
+    public List<Patients> findPatientbyId(int id){
+        String query= "SELECT p FROM Patients p WHERE p.id = :id";
+        return em.createQuery(query).setParameter("id", id).getResultList();
+    }
+    
 }

@@ -5,6 +5,7 @@
  */
 package Facades;
 
+import Entities.Patients;
 import Entities.Records;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -61,4 +62,8 @@ public class RecordsFacade extends AbstractFacade<Records> {
         return em.createQuery(query).getResultList();
     }
     
+    public List<Records> findRecordbyId(int id){
+        String query= "SELECT r FROM Records r WHERE r.id = :id";
+        return em.createQuery(query).setParameter("id", id).getResultList();
+    }
 }

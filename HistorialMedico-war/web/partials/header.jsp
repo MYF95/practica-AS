@@ -71,6 +71,7 @@
                         <a href="${pageContext.request.contextPath}/dbPatients.jsp">Ver pacientes</a>
                         <a href="${pageContext.request.contextPath}/dbRecords.jsp">Ver consultas</a>
                         <a href="${pageContext.request.contextPath}/dbUsers.jsp">Ver usuarios</a>
+                        <a href="${pageContext.request.contextPath}/dbPatientRecords.jsp">Ver consultas relacionadas</a>
                         <% if(session.getAttribute("logged") == "true"){ %>
                             <a href="${pageContext.request.contextPath}/logout.jsp">Logout</a>         
                         <% } else { %>

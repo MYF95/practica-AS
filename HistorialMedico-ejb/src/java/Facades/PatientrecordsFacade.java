@@ -6,6 +6,7 @@
 package Facades;
 
 import Entities.Patientrecords;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,4 +30,8 @@ public class PatientrecordsFacade extends AbstractFacade<Patientrecords> {
         super(Patientrecords.class);
     }
     
+    public List<Patientrecords> showPatientrecords(){
+        String query="SELECT p FROM Patientrecords p";
+        return em.createQuery(query).getResultList();
+    }
 }
