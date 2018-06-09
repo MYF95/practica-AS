@@ -6,6 +6,7 @@
 package Facades;
 
 import Entities.Users;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,4 +30,8 @@ public class UsersFacade extends AbstractFacade<Users> {
         super(Users.class);
     }
     
+    public List<Users> showUsers(){
+        String query="SELECT u FROM Users u";
+        return em.createQuery(query).getResultList();
+    }
 }

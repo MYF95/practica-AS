@@ -40,7 +40,7 @@
                         <a href="${pageContext.request.contextPath}/create.jsp">Crear consulta médica</a>
                         <a href="${pageContext.request.contextPath}/search.jsp">Buscar consulta médica</a>
                         <a href="${pageContext.request.contextPath}/currentRecords.jsp">Mi lista de consultas</a>
-                        <a href="${pageContext.request.contextPath}/allRecords.jsp">Todas las consultas médicas</a>
+                        <a href="${pageContext.request.contextPath}/allRecords.jsp">Todas las consultas médicas en sesión</a>
                     </div>
                 </li>
                 <li class="dropdown">
@@ -49,7 +49,7 @@
                         <a href="${pageContext.request.contextPath}/createPatient.jsp">Crear paciente</a>
                         <a href="${pageContext.request.contextPath}/searchPatient.jsp">Buscar paciente</a>
                         <a href="${pageContext.request.contextPath}/currentPatients.jsp">Mi lista de pacientes</a>
-                        <a href="${pageContext.request.contextPath}/allPatients.jsp">Todos los pacientes</a>
+                        <a href="${pageContext.request.contextPath}/allPatients.jsp">Todos los pacientes en sesión</a>
                     </div>
                 </li>
                 <li class="dropdown">
@@ -70,6 +70,7 @@
                     <div class="dropdown-content">
                         <a href="${pageContext.request.contextPath}/dbPatients.jsp">Ver pacientes</a>
                         <a href="${pageContext.request.contextPath}/dbRecords.jsp">Ver consultas</a>
+                        <a href="${pageContext.request.contextPath}/dbUsers.jsp">Ver usuarios</a>
                         <% if(session.getAttribute("logged") == "true"){ %>
                             <a href="${pageContext.request.contextPath}/logout.jsp">Logout</a>         
                         <% } else { %>
