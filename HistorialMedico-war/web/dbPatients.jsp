@@ -5,7 +5,9 @@
 <h1>Todos los pacientes de la base de datos</h1>
 
 <%  PatientsFacade pf = InitialContext.doLookup("java:global/HistorialMedico/HistorialMedico-ejb/PatientsFacade!Facades.PatientsFacade");
-    List <Patients> patients = pf.findAll(); %>
+    int index = (Integer) request.getAttribute("index");
+    List <Patients> patients = (List<Patients>) request.getAttribute("list");
+    int max = pf.count(); %>
 
 <table>
     <tr>
@@ -41,6 +43,27 @@
 
 </table>
 
+<div style="margin: 0 auto; width: 140px;">
+    <a href="/HistorialMedico-war/FrontServlet?command=ShowPatientCommand&index=<%= minus3(index)%>">Atras | </a>
+    <a href="/HistorialMedico-war/FrontServlet?command=ShowPatientCommand&index=<%= plus3(index, max)%>">Siguiente</a>
+</div>
+
 <p> Número total de pacientes: <%= pf.count() %> </p>
+
+<%! public static int minus3(int index) {
+        int newIndex = index - 3;
+        if (newIndex < 0) {
+            return 0;
+        }
+        return newIndex;
+    }
+
+    public static int plus3(int index, int max) {
+        int newIndex = index + 3;
+        if (newIndex > (max - 3)) {
+            return (max - 3);
+        }
+        return newIndex;
+    } %>
     
 <%@include file="partials/footer.jsp" %>

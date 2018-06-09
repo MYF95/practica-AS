@@ -55,8 +55,8 @@
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">Base de datos</a>
                     <div class="dropdown-content">
-                        <a href="${pageContext.request.contextPath}/dbPatients.jsp">Ver pacientes</a>
-                        <a href="${pageContext.request.contextPath}/dbRecords.jsp">Ver consultas</a>
+                        <a href="/HistorialMedico-war/FrontServlet?command=ShowPatientCommand">Ver pacientes</a>
+                        <a href="/HistorialMedico-war/FrontServlet?command=ShowRecordCommand">Ver consultas</a>
                         <a href="${pageContext.request.contextPath}/dbUsers.jsp">Ver usuarios</a>
                         <a href="${pageContext.request.contextPath}/dbUsersByDni.jsp">Ver usuarios por orden</a>
                         <a href="${pageContext.request.contextPath}/dbPatientRecords.jsp">Ver consultas relacionadas</a>
