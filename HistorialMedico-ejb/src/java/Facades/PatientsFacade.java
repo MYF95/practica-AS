@@ -37,12 +37,12 @@ public class PatientsFacade extends AbstractFacade<Patients> {
                             setParameter(3, patient.getName()).
                             setParameter(4, patient.getAge()).executeUpdate();
     }
-/*    
+
     public List<Patients> showPatients(){
-        String query="SELECT d FROM Dates d ORDER BY d.date DESC";
+        String query="SELECT p FROM Patients p";
         return em.createQuery(query).getResultList();
     }
- */       
+      
     public void updatePatient(Patients patient){
         String query="UPDATE Patients set dni=:dni,name=:name,age=:age where id=:id";
         em.createQuery(query).setParameter("age", patient.getAge()).

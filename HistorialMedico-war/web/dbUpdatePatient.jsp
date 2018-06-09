@@ -2,14 +2,12 @@
 <%@page import="Entities.Patients"%>
 <%@include file="partials/header.jsp" %>
 
-<h1>Todos los pacientes de la base de datos</h1>
-
 <%  PatientsFacade pf = InitialContext.doLookup("java:global/HistorialMedico/HistorialMedico-ejb/PatientsFacade!Facades.PatientsFacade");
     List <Patients> patients = pf.findAll(); 
     int id = Integer.parseInt(request.getParameter("dbUpdatePatientId")); 
     Patients p = patients.get(id-1); %>
 
-<h2>Modificando el usuario <%= p.getName() %> con ID <%= p.getId() %></h2>
+<h1>Modificando el usuario <%= p.getName() %> con ID <%= p.getId() %></h1>
 
 <form action="FrontServlet">
     Nombre del paciente: <br>

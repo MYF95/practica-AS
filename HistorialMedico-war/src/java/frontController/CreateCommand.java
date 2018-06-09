@@ -1,6 +1,8 @@
 package frontController;
 
 
+import Entities.Records;
+import Facades.RecordsFacade;
 import Singleton.Log;
 import Stateful.MedicalRecord;
 import Stateful.myRecordList;
@@ -19,6 +21,7 @@ public class CreateCommand extends FrontCommand{
     myRecordList myList = myRecordListBean();
     MedicalRecordList medicalRecordList = medicalRecordListBean();
     Log log = logBean();
+    RecordsFacade rf = recordsFacadeBean();
     
     @Override
     public void process() throws ServletException, IOException {
@@ -28,12 +31,20 @@ public class CreateCommand extends FrontCommand{
         record.setInfo(request.getParameter("info"));
         record.setDate(request.getParameter("date"));
         myList = (myRecordList)session.getAttribute("list");
+        
+        Records dbRecord = new Records(); 
+        dbRecord.setId(rf.findLastRecord().get(0).getId()+1);
+        dbRecord.setDni(request.getParameter("dni"));
+        dbRecord.setInfo(request.getParameter("info"));
+        dbRecord.setDate(request.getParameter("date"));
+        
         if(record.getDni().equals("")){
             forward("/createFail.jsp");
         } else if (record.getDni().equals("as")){
             record.setDni("as");
             record.setInfo("Contenido secreto via unknown");
             myList.add(record);
+            rf.addRecord(dbRecord);
             
             //Se añade a la lista global
             medicalRecordList.add(record);
@@ -46,6 +57,7 @@ public class CreateCommand extends FrontCommand{
             medicalRecordList.add(record);
             session.setAttribute("medicalRecordList", medicalRecordList);
             
+            rf.addRecord(dbRecord);
             myList.add(record);
             session.setAttribute("record", record);
             session.setAttribute("list", myList);
@@ -87,6 +99,16 @@ public class CreateCommand extends FrontCommand{
         try {
             Context c = new InitialContext();
             return (Log) c.lookup("java:global/HistorialMedico/HistorialMedico-ejb/Log!Singleton.Log");
+        } catch (NamingException ne) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
+            throw new RuntimeException(ne);
+        }
+    }
+    
+    private RecordsFacade recordsFacadeBean() {
+        try {
+            Context c = new InitialContext();
+            return (RecordsFacade) c.lookup("java:global/HistorialMedico/HistorialMedico-ejb/RecordsFacade!Facades.RecordsFacade");
         } catch (NamingException ne) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", ne);
             throw new RuntimeException(ne);

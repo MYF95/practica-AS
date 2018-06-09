@@ -6,7 +6,7 @@
     Nombre del paciente: <br>
     <input type="text" name="patientName"> <br>
     DNI: <br>
-    <input type="text" name="patientDni"> <br>
+    <input type="text" name="patientDni" maxlength="9"> <br>
     Edad: <br>
     <input type="number" name="patientAge"> <br>
     <input type="hidden" name="command" value="CreatePatientCommand">

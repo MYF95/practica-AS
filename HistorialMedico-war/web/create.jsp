@@ -4,7 +4,7 @@
 
 <form action="FrontServlet">
     DNI: <br>
-    <input type="text" name="dni"> <br>
+    <input type="text" name="dni" maxlength="9"> <br>
     Detalles de la consulta: <br>
     <textarea name="info"></textarea> <br>
     Fecha: <br>

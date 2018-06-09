@@ -4,6 +4,7 @@
     Author     : myf19
 --%>
 
+<%@page import="Entities.Records"%>
 <%@page import="Entities.Patients"%>
 <%@page import="Singleton.Log"%>
 <%@page import="Singleton.Stats"%>
@@ -67,7 +68,8 @@
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">Base de datos</a>
                     <div class="dropdown-content">
-                        <a href="${pageContext.request.contextPath}/dbPatients.jsp">Ver usuarios</a>
+                        <a href="${pageContext.request.contextPath}/dbPatients.jsp">Ver pacientes</a>
+                        <a href="${pageContext.request.contextPath}/dbRecords.jsp">Ver consultas</a>
                         <% if(session.getAttribute("logged") == "true"){ %>
                             <a href="${pageContext.request.contextPath}/logout.jsp">Logout</a>         
                         <% } else { %>
@@ -91,6 +93,7 @@
                 
                 //DB
                 Patients dbPatient = new Patients();
+                Records dbRecord = new Records();
                 
                 session.setAttribute("list", myList);
                 session.setAttribute("record", record);
