@@ -2,10 +2,10 @@
 <%@page import="Facades.UsersFacade"%>
 <%@include file="partials/header.jsp" %>
 
-<h1>Todas los usuarios de la base de datos</h1>
+<h1>Todas los usuarios de la base de datos por DNI</h1>
 
 <%  UsersFacade uf = InitialContext.doLookup("java:global/HistorialMedico/HistorialMedico-ejb/UsersFacade!Facades.UsersFacade");
-    List <Users> users = uf.showUsers(); %>
+    List <Users> users = uf.sortUsersByDni(); %>
 
 <table>
     <tr>

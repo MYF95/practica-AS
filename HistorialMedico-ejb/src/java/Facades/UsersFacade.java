@@ -10,6 +10,9 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -28,6 +31,14 @@ public class UsersFacade extends AbstractFacade<Users> {
 
     public UsersFacade() {
         super(Users.class);
+    }
+    
+    public List<Users> sortUsersByDni(){
+       CriteriaBuilder crit = em.getCriteriaBuilder();
+       CriteriaQuery<Users> query = crit.createQuery(Users.class);
+       Root<Users> root = query.from(Users.class);
+       query.select(root).orderBy(crit.asc(root.get("dni")));
+       return em.createQuery(query).getResultList();
     }
     
     public List<Users> showUsers(){
