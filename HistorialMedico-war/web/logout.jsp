@@ -9,8 +9,8 @@
     <a href="index.jsp">No</a>
 </form>
 
-<% User user = (User)session.getAttribute("user"); %>
+<% String user = (String)session.getAttribute("user"); %>
 <p> Estás conectado como usuario:
-<%= user.getName() %></p>   
+<%= user %></p>   
 
 <%@include file="/partials/footer.jsp" %>

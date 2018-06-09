@@ -53,6 +53,15 @@
                     </div>
                 </li>
                 <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Base de datos</a>
+                    <div class="dropdown-content">
+                        <a href="${pageContext.request.contextPath}/dbPatients.jsp">Ver pacientes</a>
+                        <a href="${pageContext.request.contextPath}/dbRecords.jsp">Ver consultas</a>
+                        <a href="${pageContext.request.contextPath}/dbUsers.jsp">Ver usuarios</a>
+                        <a href="${pageContext.request.contextPath}/dbPatientRecords.jsp">Ver consultas relacionadas</a>
+                    </div>
+                </li>                
+                <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">Opciones</a>
                     <div class="dropdown-content">
                         <a href="${pageContext.request.contextPath}/allUsers.jsp">Ver usuarios</a>
@@ -65,20 +74,7 @@
                         <% } %>
                     </div>
                 </li>
-                <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropbtn">Base de datos</a>
-                    <div class="dropdown-content">
-                        <a href="${pageContext.request.contextPath}/dbPatients.jsp">Ver pacientes</a>
-                        <a href="${pageContext.request.contextPath}/dbRecords.jsp">Ver consultas</a>
-                        <a href="${pageContext.request.contextPath}/dbUsers.jsp">Ver usuarios</a>
-                        <a href="${pageContext.request.contextPath}/dbPatientRecords.jsp">Ver consultas relacionadas</a>
-                        <% if(session.getAttribute("logged") == "true"){ %>
-                            <a href="${pageContext.request.contextPath}/logout.jsp">Logout</a>         
-                        <% } else { %>
-                            <a href="${pageContext.request.contextPath}/login.jsp">Login</a> 
-                        <% } %>
-                    </div>
-                </li>
+
             </ul>            
         </nav>
         
@@ -90,7 +86,6 @@
                 myPatientList myPatientList = new myPatientList();
                 MedicalRecordList medicalRecordList = new MedicalRecordList();
                 PatientList patientList = new PatientList();
-                User user = new User();
                 UserList userList = new UserList();
                 
                 //DB
@@ -103,7 +98,7 @@
                 session.setAttribute("myPatientList", myPatientList);
                 session.setAttribute("medicalRecordList", medicalRecordList);
                 session.setAttribute("patientList", patientList);
-                session.setAttribute("user", user);
+                session.setAttribute("user", "");
                 session.setAttribute("userList", userList);
                 session.setAttribute("logged", "false");
             }

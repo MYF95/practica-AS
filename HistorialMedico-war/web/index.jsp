@@ -11,10 +11,15 @@ and open the template in the editor.
 -->
 <%@include file="partials/header.jsp" %>
 
-<% User user = (User)session.getAttribute("user"); %>
+<% String user = (String)session.getAttribute("user"); %>
+
+<% if(session.getAttribute("flash") != null){ %>
+<h1><%= (String)session.getAttribute("flash")%></h1>
+<% session.setAttribute("flash", null);
+ } %>
 
 <% if(session.getAttribute("logged") == "true"){%>
-<h1>Bievenido a la página usuario <%= user.getName() %></h1>
+<h1>Bievenido a la página usuario <%= user %></h1>
 <% } %>
 
 <h1>Consulta médica</h1>
