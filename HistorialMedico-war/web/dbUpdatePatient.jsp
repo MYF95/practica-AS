@@ -3,7 +3,7 @@
 <%@include file="partials/header.jsp" %>
 
 <%  PatientsFacade pf = InitialContext.doLookup("java:global/HistorialMedico/HistorialMedico-ejb/PatientsFacade!Facades.PatientsFacade");
-    List <Patients> patients = pf.findAll(); 
+    List <Patients> patients = pf.showPatients(); 
     int id = Integer.parseInt(request.getParameter("dbUpdatePatientId")); 
     Patients p = patients.get(id-1); %>
 

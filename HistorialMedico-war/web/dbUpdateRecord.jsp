@@ -2,7 +2,7 @@
 <%@include file="partials/header.jsp" %>
 
 <%  RecordsFacade rf = InitialContext.doLookup("java:global/HistorialMedico/HistorialMedico-ejb/RecordsFacade!Facades.RecordsFacade");
-    List <Records> records = rf.findAll(); 
+    List <Records> records = rf.showRecords(); 
     int id = Integer.parseInt(request.getParameter("dbUpdateRecordId")); 
     Records r = records.get(id-1); %>
 

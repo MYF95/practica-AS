@@ -15,6 +15,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,13 +28,15 @@ public class UpdateRecordCommand extends FrontCommand{
     
     @Override
     public void process() throws ServletException, IOException {      
+        HttpSession session = request.getSession();
         Records dbRecord = new Records();
         dbRecord.setId(Integer.parseInt(request.getParameter("recordId")));
         dbRecord.setDni(request.getParameter("dni"));
         dbRecord.setInfo(request.getParameter("info"));
         dbRecord.setDate(request.getParameter("date"));
         rf.updateRecord(dbRecord);
-        forward("/dbRecords.jsp");
+        session.setAttribute("flash", "Consulta actualizada");
+        forward("/index.jsp");
     }
     
     private Log logBean() {

@@ -15,6 +15,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -26,11 +27,13 @@ public class DeleteRecordCommand extends FrontCommand{
     RecordsFacade rf = recordsFacadeBean();
     
     @Override
-    public void process() throws ServletException, IOException {      
+    public void process() throws ServletException, IOException { 
+        HttpSession session = request.getSession();
         Records dbRecord = new Records();
         dbRecord.setId(Integer.parseInt(request.getParameter("recordId")));
         rf.deleteRecord(dbRecord);
-        forward("/dbRecords.jsp");
+        session.setAttribute("flash", "Consulta borrada");
+        forward("/index.jsp");
     }
     
     private Log logBean() {

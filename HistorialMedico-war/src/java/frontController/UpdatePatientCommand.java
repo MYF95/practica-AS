@@ -15,6 +15,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,13 +28,15 @@ public class UpdatePatientCommand extends FrontCommand{
     
     @Override
     public void process() throws ServletException, IOException {      
+        HttpSession session = request.getSession();
         Patients dbPatient = new Patients();
         dbPatient.setId(Integer.parseInt(request.getParameter("patientId")));
         dbPatient.setDni(request.getParameter("patientDni"));
         dbPatient.setName(request.getParameter("patientName"));
         dbPatient.setAge(Integer.parseInt(request.getParameter("patientAge")));
         pf.updatePatient(dbPatient);
-        forward("/dbPatients.jsp");
+        session.setAttribute("flash", "Paciente actualizado");
+        forward("/index.jsp");
     }
     
     private Log logBean() {
